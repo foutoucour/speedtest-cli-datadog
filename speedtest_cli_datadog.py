@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import logging
+import functools
 from datadog import statsd
 import speedtest_cli
 
@@ -15,11 +16,14 @@ class DatadogGauge(object):
 
     :ivar str label: label for the gauge
     """
+
     def __init__(self, label):
         self.label = label
 
     def __call__(self, func):
         """Decoration"""
+
+        @functools.wraps(func)
         def wrappee(*args, **kwargs):
             """Wrapper of the function."""
             ret = func(*args, **kwargs)
@@ -32,8 +36,13 @@ class DatadogGauge(object):
 
 class DatadogGaugeLatency(DatadogGauge):
     """Represent a specification of the decorator for the special case of latency."""
+
     def __call__(self, func):
+        """Decoration"""
+
+        @functools.wraps(func)
         def wrappee(*args, **kwargs):
+            """Wrapper of the function."""
             ret = func(*args, **kwargs)
             log.debug('%s: %s', self.label, ret['latency'])
             statsd.gauge(self.label, ret['latency'])
