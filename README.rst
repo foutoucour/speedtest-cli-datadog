@@ -1,9 +1,19 @@
 speedtest-cli-datadog
 =====================
 
-Based on the work done on https://github.com/sivel/speedtest-cli to send data to datadog
+This CLI utility conducts a speedtest via [speedtest.net](http://www.speedtest.net] and emits the results via dogstatsd.
 
-Thank @jremond for the idea ;)
+This tool is based on [sivel/speedtest-cli][https://github.com/sivel/speedtest-cli].
+
+Thank [jremond](https://github.com/jremond) for the idea ;)
+
+Metrics
+------------
+This utility emits three metrics:
+
+* speedtest.upload 
+* speedtest.download
+* speedtest.latency
 
 Installation
 ------------
