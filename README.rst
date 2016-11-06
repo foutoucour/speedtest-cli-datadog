@@ -26,12 +26,12 @@ Github
 
 ::
 
-    pip install git+https://github.com/sivel/speedtest-cli-datadog.git
+    pip install git+https://github.com/foutoucour/speedtest-cli-datadog.git
 
 or
 
 ::
 
-    git clone https://github.com/sivel/speedtest-cli-datadog.git
+    git clone https://github.com/foutoucour/speedtest-cli-datadog.git
     python speedtest-cli-datadog/setup.py install
 
