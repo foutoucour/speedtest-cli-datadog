@@ -3,9 +3,9 @@
 import logging
 import functools
 from datadog import statsd
-import speedtest_cli
+import speedtest
 
-log = logging.getLogger('speedtest_cli_datadog')
+log = logging.getLogger('speedtest_datadog')
 logging.basicConfig()
 log.setLevel(logging.DEBUG)
 
@@ -51,19 +51,21 @@ class DatadogGaugeLatency(DatadogGauge):
         return wrappee
 
 
-# Decoration of the functions of speedtest_cli
-speedtest_cli.downloadSpeed = DatadogGauge('speedtest.download')(
-    speedtest_cli.downloadSpeed
+# Decoration of the functions of speedtest
+speedtest.Speedtest.download = DatadogGauge('speedtest.download')(
+    speedtest.Speedtest.download
 )
-speedtest_cli.uploadSpeed = DatadogGauge('speedtest.upload')(
-    speedtest_cli.uploadSpeed
+
+speedtest.Speedtest.upload = DatadogGauge('speedtest.upload')(
+    speedtest.Speedtest.upload
 )
-speedtest_cli.getBestServer = DatadogGaugeLatency('speedtest.latency')(
-    speedtest_cli.getBestServer
+
+speedtest.Speedtest.get_best_server = DatadogGaugeLatency('speedtest.latency')(
+    speedtest.Speedtest.get_best_server
 )
 
 # required for the command line entry point.
-main = speedtest_cli.main
+main = speedtest.main
 
 if __name__ == '__main__':
     main()
