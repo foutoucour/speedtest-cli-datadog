@@ -28,7 +28,7 @@ except:
 setup(
     install_requires=reqs,
     name='speedtest-cli-datadog',
-    version='0.1.0',
+    version='0.2.0',
     description=('Command line interface for testing internet bandwidth using '
                  'speedtest.net, using datadog statsd.'),
     long_description=long_description,
