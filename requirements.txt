@@ -1,2 +1,2 @@
 datadog>=0.13.0
-speedtest_cli>=0.3.4
+speedtest_cli==0.3.4
